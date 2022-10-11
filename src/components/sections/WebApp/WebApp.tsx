@@ -10,7 +10,6 @@ import {
 import {Card} from '../../main/Card';
 import {DataTable} from '../../DataTable';
 import {Modal} from '../../main/Modal';
-import {WebApp as SDKWebApp} from '../../../twa';
 import {toRGBExt} from '../../../twa/utils';
 
 type Props = {
@@ -41,12 +40,11 @@ export const WebApp = memo<Props>(function WebApp(props) {
 
   const onBgColorChange = useCallback<ChangeEventHandler<FormElement>>(e => {
     const {value} = e.target;
-    console.log(123)
     try {
       setBgColor(toRGBExt(value));
     } catch (e) {
     }
-  }, []);
+  }, [setBgColor]);
 
   const onHeaderColorChange = useCallback<ChangeEventHandler<FormElement>>(e => {
     const {value} = e.target;
@@ -54,7 +52,7 @@ export const WebApp = memo<Props>(function WebApp(props) {
     if (value === 'bg_color' || value === 'secondary_bg_color') {
       setHeaderColor(value);
     }
-  }, []);
+  }, [setHeaderColor]);
 
   return (
     <>

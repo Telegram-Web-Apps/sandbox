@@ -1,5 +1,4 @@
 import {
-  ChangeEvent,
   ChangeEventHandler,
   memo,
   useCallback,
@@ -15,13 +14,11 @@ import {
 import {
   Modal as NextModal,
   Text,
-  Button,
-  CSS, Checkbox, Input, useInput, Row, FormElement,
+  CSS, Checkbox, Input, Row, FormElement,
 } from '@nextui-org/react';
 import {Card} from '../../main/Card';
 import {DataTable} from '../../DataTable';
 import {Modal} from '../../main/Modal';
-import {MainButton as SDKMainButton} from '../../../twa';
 import {toRGBExt} from '../../../twa/utils';
 
 type Props = {
@@ -32,7 +29,6 @@ type Props = {
  * Displays information about main button.
  */
 export const MainButton = memo<Props>(function MainButton(props) {
-
   // Extract all main button information.
   const [isActive, setActive] = useMainButtonActive();
   const [color, setButtonColor] = useMainButtonColor();
@@ -49,7 +45,7 @@ export const MainButton = memo<Props>(function MainButton(props) {
     if (value.length > 0) {
       setText(value);
     }
-  }, []);
+  }, [setText]);
 
   const onButtonColorChange = useCallback<ChangeEventHandler<FormElement>>(e => {
     const {value} = e.target;
@@ -58,7 +54,7 @@ export const MainButton = memo<Props>(function MainButton(props) {
       setButtonColor(rgb);
     } catch (e) {
     }
-  }, []);
+  }, [setButtonColor]);
 
   const onTextColorChange = useCallback<ChangeEventHandler<FormElement>>(e => {
     const {value} = e.target;
@@ -67,7 +63,7 @@ export const MainButton = memo<Props>(function MainButton(props) {
       setTextColor(rgb);
     } catch (e) {
     }
-  }, []);
+  }, [setTextColor]);
 
   // Lines to display.
   const lines = [
